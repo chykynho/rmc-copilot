@@ -1,22 +1,25 @@
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-
-# Virtual enviroments
+# Ambientes
+.rmc_win/
 .venv/
 venv/
-.rmc/
-.rmc_win/
 
-# Streamlit
-.streamlit/secrets.toml
+# Streamlit local/secrets
+.streamlit/
 
-# Dados sensíveis / grandes
-data/raw/
-data/processed/
-data/database/
+# Pacotes temporários
+pckt/
+
+# Arquivos temporários
+fix_encoding.py
+fix_final.py
+*.bak
+*.tmp
+*.old
+*.bak_*
+* copy*.py
+*_backup.py
+
+# Bases e planilhas
 *.xlsx
 *.xls
 *.csv
@@ -25,25 +28,12 @@ data/database/
 *.db
 *.sqlite
 
-# Logs
-logs/
-*.log
+# Python
+__pycache__/
+*.py[cod]
 
 # Ambiente
 .env
 
 # VS Code
 .vscode/
-
-# Notebooks temporários
-.ipynb_checkpoints/
-
-# Sistema
-.DS_Store
-Thumbs.db
-
-# Backups locais
-*.bak
-*.old
-*.tmp
-*_backup.py

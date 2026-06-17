@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual enviroments
+.venv/
+venv/
+.rmc/
+.rmc_win/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Dados sensíveis / grandes
+data/raw/
+data/processed/
+data/database/
+*.xlsx
+*.xls
+*.csv
+*.parquet
+*.duckdb
+*.db
+*.sqlite
+
+# Logs
+logs/
+*.log
+
+# Ambiente
+.env
+
+# VS Code
+.vscode/
+
+# Notebooks temporários
+.ipynb_checkpoints/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Backups locais
+*.bak
+*.old
+*.tmp
+*_backup.py

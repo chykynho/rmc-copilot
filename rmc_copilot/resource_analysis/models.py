@@ -60,6 +60,7 @@ class ResourceAnalysisRequest:
     classificacao: str = "PÚBLICO"
     threshold_pct: float = 80.0
     origem: str = "RMC Copilot"
+    vm_resource_id: Optional[str] = None
 
     def __post_init__(self) -> None:
         self.solicitacao = str(self.solicitacao or "").strip().upper()
@@ -67,6 +68,7 @@ class ResourceAnalysisRequest:
         self.resource = normalize_resource(self.resource)
         self.partition = str(self.partition or "").strip() or None
         self.classificacao = str(self.classificacao or "PÚBLICO").strip().upper()
+        self.vm_resource_id = str(self.vm_resource_id or "").strip() or None
         self.periodo_dias = int(self.periodo_dias or 90)
         # Não preencher partição automaticamente.
         # Para DISK, a partição deve ser informada explicitamente na tela/CLI

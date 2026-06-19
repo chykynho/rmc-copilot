@@ -47,7 +47,7 @@ def generate_charts(req: ResourceAnalysisRequest, usage_df: pd.DataFrame, capaci
     out.mkdir(parents=True, exist_ok=True)
     usage = usage_df[["Date", "Value"]].copy().sort_values("Date")
     capacity = float(stats.capacity)
-    unit = req.unit
+    unit = stats.unit
     title = _safe_title(req)
     paths: Dict[str, str] = {}
 

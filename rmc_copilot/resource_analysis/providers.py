@@ -106,3 +106,9 @@ class RmcTimeseriesProvider:
             "RmcTimeseriesProvider será plugado no ambiente controlado, usando a base histórica real da coleta. "
             "Enquanto isso, use LegacyMetricChartProvider ou MockTimeseriesProvider."
         )
+
+# Provider DuckDB oficial separado para evitar acoplamento forte com o mock/legacy.
+try:  # pragma: no cover
+    from .duckdb_provider import DuckDBTimeseriesProvider
+except Exception:  # pragma: no cover
+    DuckDBTimeseriesProvider = None  # type: ignore

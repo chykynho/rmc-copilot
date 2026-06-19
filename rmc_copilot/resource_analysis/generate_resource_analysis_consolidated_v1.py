@@ -10,6 +10,7 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from rmc_copilot.resource_analysis.models import ResourceAnalysisRequest
 from rmc_copilot.resource_analysis.providers import MockTimeseriesProvider
+from rmc_copilot.resource_analysis.duckdb_provider import DuckDBTimeseriesProvider, register_report_request, register_report_artifacts
 from rmc_copilot.resource_analysis.stats_engine import compute_resource_stats
 from rmc_copilot.resource_analysis.charts import generate_charts
 from rmc_copilot.resource_analysis.narrative import deterministic_narrative, build_llm_prompt
@@ -30,6 +31,10 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--classificacao", default="PÚBLICO", help="Classificação do relatório")
     p.add_argument("--threshold-pct", type=float, default=80.0, help="Margem de segurança em percentual")
     p.add_argument("--mock", action="store_true", help="Usa série simulada para teste no PC particular")
+    p.add_argument("--source", choices=["mock", "duckdb"], default=None, help="Fonte de dados. Se omitido, --mock usa mock; caso contrário usa duckdb.")
+    p.add_argument("--run-id", default=None, help="run_id do DuckDB. Se omitido usa a execução granular mais recente.")
+    p.add_argument("--db-path", default=None, help="Caminho opcional do DuckDB oficial")
+    p.add_argument("--vm-resource-id", default=None, help="Identificador vROps da VM para desambiguar nomes duplicados")
     p.add_argument("--out-dir", default="data/reports/resource_analysis", help="Diretório raiz de saída")
     p.add_argument("--save-prompt", action="store_true", help="Salva prompts da LLM para auditoria")
     p.add_argument("--formats", default="md,docx,pdf", help="Formatos: md,docx,pdf")
@@ -43,13 +48,22 @@ def _split(value: str) -> list[str]:
 
 def main() -> int:
     args = parse_args()
-    if not args.mock:
-        print("ERRO: nesta versão consolidada local, use --mock. O provider real será plugado no ambiente controlado.")
-        return 2
+    source = args.source or ("mock" if args.mock else "duckdb")
     resources = [r.upper().strip() for r in _split(args.resources)] or ["CPU", "MEM", "DISK"]
     partitions = _split(args.partitions) or ["C:"]
     selected_formats = parse_formats(args.formats)
-    provider = MockTimeseriesProvider()
+    if source == "mock":
+        provider = MockTimeseriesProvider()
+        source_run_id = None
+        origem = "cli/local_simulado"
+    else:
+        provider = DuckDBTimeseriesProvider(db_path=args.db_path, run_id=args.run_id)
+        source_run_id = provider.latest_run_id()
+        origem = f"DuckDB oficial / run_id={source_run_id}"
+        if not source_run_id:
+            print("ERRO: nenhuma execução encontrada no DuckDB.")
+            return 2
+
     generated_files: list[Path] = []
     chart_files: list[Path] = []
     prompt_files: list[Path] = []
@@ -68,7 +82,8 @@ def main() -> int:
                 analista=args.analista,
                 classificacao=args.classificacao,
                 threshold_pct=args.threshold_pct,
-                origem="cli/local_simulado",
+                origem=origem,
+                vm_resource_id=args.vm_resource_id,
             )
             errors = req.validate()
             if errors:
@@ -99,14 +114,43 @@ def main() -> int:
     for k, p in consolidated.items():
         print(f"{k.upper()}: {p}")
 
+    produced_files = list(consolidated.values()) + generated_files + chart_files
     if args.zip:
         zip_path = bundle_root / f"{items[0].req.safe_solicitacao}_{items[0].req.safe_vm}_relatorio_consolidado_completo.zip"
-        make_zip_bundle(zip_path, list(consolidated.values()) + generated_files + chart_files, bundle_root)
+        make_zip_bundle(zip_path, produced_files, bundle_root)
+        produced_files.append(zip_path)
         print(f"ZIP: {zip_path}")
         if prompt_files:
             prompts_zip = bundle_root / f"{items[0].req.safe_solicitacao}_{items[0].req.safe_vm}_prompts_llm_auditoria.zip"
             make_zip_bundle(prompts_zip, prompt_files, bundle_root)
+            produced_files.append(prompts_zip)
             print(f"ZIP auditoria: {prompts_zip}")
+
+    if source == "duckdb":
+        try:
+            request_id = register_report_request(
+                solicitacao=args.solicitacao,
+                vm=args.vm,
+                vm_resource_id=args.vm_resource_id,
+                resources=",".join(resources),
+                partitions=",".join(partitions),
+                period_days=args.periodo_dias,
+                requested_by=args.solicitante,
+                analyst=args.analista,
+                classification=args.classificacao,
+                source_run_id=source_run_id,
+                db_path=args.db_path,
+            )
+            count = register_report_artifacts(
+                request_id=request_id,
+                solicitacao=args.solicitacao,
+                vm=args.vm,
+                artifact_paths=produced_files,
+                db_path=args.db_path,
+            )
+            print(f"AUDITORIA_DUCKDB: request_id={request_id} artifacts={count}")
+        except Exception as exc:
+            print(f"AVISO: relatório gerado, mas falhou auditoria DuckDB: {exc}")
     return 0
 
 

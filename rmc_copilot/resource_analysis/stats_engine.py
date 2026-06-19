@@ -131,9 +131,11 @@ def compute_resource_stats(req: ResourceAnalysisRequest, usage_df: pd.DataFrame,
         req, capacity, mean_pct, p95_pct, maximum_pct, f90_pct, p95, f90
     )
 
+    output_unit = str(getattr(capacity_df, "attrs", {}).get("source_unit") or req.unit)
+
     stats = ResourceStats(
         resource=req.resource_title,
-        unit=req.unit,
+        unit=output_unit,
         capacity=capacity,
         threshold_pct=float(req.threshold_pct),
         threshold_value=threshold_value,

@@ -1,0 +1,11 @@
+matplotlib
+pandas
+numpy
+scikit-learn
+statsmodels
+pyyaml
+keyring
+streamlit
+python-docx
+reportlab
+Pillow

@@ -1,0 +1,19 @@
+resource_analysis:
+  enabled: true
+  default_period_days: 90
+  threshold_pct: 80
+  output_dir: data/reports/resource_analysis
+  classification_default: PUBLICO
+  template:
+    brand: BV
+    primary_color: "#0033A0"
+    secondary_color: "#78BE20"
+    font_family: "Arial"
+  data_provider:
+    mode: local_simulado   # local_simulado, legacy_metricchart, rmc_real
+    legacy_base_dir: "D:/Francisco/Capacity/analises"
+    rmc_store_path: "data/db/rmc_capacity.duckdb"
+  llm:
+    enabled: false
+    mode: deterministic_safe   # deterministic_safe ou ollama
+    ollama_model: gemma3:1b

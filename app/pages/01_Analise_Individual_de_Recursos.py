@@ -330,10 +330,10 @@ if st.button("Gerar relatório", type="primary"):
         chart_cols = st.columns(2)
         with chart_cols[0]:
             if charts.get("comparacao_previsao"):
-                st.image(charts["comparacao_previsao"], caption="Comparação e previsão", use_container_width=True)
+                st.image(charts["comparacao_previsao"], caption="Comparação e previsão", width="stretch")
         with chart_cols[1]:
             if charts.get("histograma"):
-                st.image(charts["histograma"], caption="Distribuição de uso", use_container_width=True)
+                st.image(charts["histograma"], caption="Distribuição de uso", width="stretch")
 
     if generated:
         st.divider()

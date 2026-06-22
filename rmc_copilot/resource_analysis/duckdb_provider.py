@@ -14,7 +14,7 @@ try:
 except Exception:  # pragma: no cover
     DATABASE_PATH = Path("data/database/rmc_copilot.duckdb")
 
-from rmc_copilot.resource_timeseries.duckdb_repository import connect, create_resource_timeseries_schema
+from rmc_copilot.resource_timeseries.duckdb_repository import connect
 
 
 PREFERRED_SOURCES = ("vrops_direct", "vrops_excel_import", "legacy_historico_vm_metricas")
@@ -33,7 +33,9 @@ class DuckDBTimeseriesProvider:
     def __init__(self, db_path: str | Path | None = None, run_id: str | None = None):
         self.db_path = Path(db_path) if db_path else Path(DATABASE_PATH)
         self.run_id = run_id
-        create_resource_timeseries_schema(self.db_path)
+        # Não cria/altera schema no provider. Em Streamlit, múltiplas instâncias podem
+        # abrir o DuckDB ao mesmo tempo; operações de catálogo como CREATE OR REPLACE VIEW
+        # causam write-write conflict. O schema deve ser inicializado pelos scripts 36/39.
 
     def list_runs(self) -> pd.DataFrame:
         con = connect(self.db_path)
@@ -272,7 +274,6 @@ def register_report_request(
     source_run_id: str | None,
     db_path: str | Path | None = None,
 ) -> str:
-    create_resource_timeseries_schema(db_path)
     request_id = str(uuid.uuid4())
     con = connect(db_path)
     df = pd.DataFrame([
@@ -307,7 +308,6 @@ def register_report_artifacts(
 ) -> int:
     if not artifact_paths:
         return 0
-    create_resource_timeseries_schema(db_path)
     rows = []
     for path in artifact_paths:
         p = Path(path)

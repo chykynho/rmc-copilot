@@ -1,0 +1,58 @@
+Você é um analista de infraestrutura, VMware e Capacity Planning.
+Gere uma análise executiva em português, clara para público não técnico, com base EXCLUSIVA nos números JSON abaixo.
+Não invente valores, datas, nomes, capacidades, percentuais ou recomendações fora do JSON.
+Use seções: Resumo Executivo, Análise Técnica, Análise Estatística, Conclusão e Recomendação.
+Use datas no padrão português do Brasil: DD/MM/AAAA.
+Explique a margem de segurança de 80%.
+
+JSON:
+{
+  "solicitacao": {
+    "solicitacao": "SOL1809645",
+    "vm": "SRV-DASHPRD01",
+    "resource": "DISK",
+    "partition": "E:",
+    "periodo_dias": 90,
+    "solicitante": "Eduardo Barbosa",
+    "analista": "Francisco Alves",
+    "classificacao": "PÚBLICO",
+    "threshold_pct": 80.0,
+    "origem": "cli/local_simulado"
+  },
+  "estatisticas": {
+    "resource": "Disco (Partição E:)",
+    "unit": "GB",
+    "capacity": 100.0,
+    "threshold_pct": 80.0,
+    "threshold_value": 80.0,
+    "start": "20/03/2026",
+    "end": "17/06/2026",
+    "samples": 360,
+    "minimum": 85.18491345226262,
+    "maximum": 94.28035684057186,
+    "mean": 89.86971114851423,
+    "median": 89.85383327116588,
+    "q1": 88.13683048732,
+    "q3": 91.70253056219053,
+    "p95": 93.18732934689551,
+    "std": 2.1130160047615396,
+    "iqr": 3.5657000748705343,
+    "lower_outlier": 82.7882803750142,
+    "upper_outlier": 97.05108067449633,
+    "mean_pct": 89.86971114851423,
+    "median_pct": 89.85383327116588,
+    "maximum_pct": 94.28035684057186,
+    "p95_pct": 93.18732934689551,
+    "forecast_30": 95.32286594542592,
+    "forecast_60": 97.51551364539617,
+    "forecast_90": 99.70816134536642,
+    "forecast_30_pct": 95.32286594542592,
+    "forecast_60_pct": 97.51551364539617,
+    "forecast_90_pct": 99.70816134536642,
+    "diagnosis": "CRÍTICO",
+    "recommendation_action": "AUMENTAR_RECURSO",
+    "recommended_capacity": 150.0,
+    "recommended_delta": 50.0,
+    "confidence_note": "Forecast linear simples de 90 dias; usar como apoio, não como única fonte de decisão."
+  }
+}

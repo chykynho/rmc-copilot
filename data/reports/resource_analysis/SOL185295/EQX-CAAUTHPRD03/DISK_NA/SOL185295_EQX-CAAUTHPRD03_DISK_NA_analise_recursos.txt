@@ -1,0 +1,44 @@
+Relatório de Análise Individual de Recursos — EQX-CAAUTHPRD03
+Solicitação: SOL185295
+Servidor / VM: EQX-CAAUTHPRD03
+Recurso: Disco (Partição /)
+Período histórico: 90 dias
+Período analisado: 15/03/2026 a 13/06/2026
+Solicitante: 
+Analista: Francisco Alves
+Classificação: PÚBLICO
+
+1. Resumo Executivo
+A análise do recurso Disco (Partição /) da VM EQX-CAAUTHPRD03 indica comportamento operacional estável. A capacidade atual é de 4.99 GB, o uso médio foi de 3.39 GB (68.00%) e o P95 ficou em 3.42 GB (68.51%), dentro da margem de segurança de 80%.
+
+2. Análise Técnica dos Gráficos
+O gráfico de comparação e previsão deve ser usado para verificar se a linha de utilização se aproxima da capacidade total ou da margem de segurança. O gráfico de média móvel ajuda a diferenciar picos isolados de tendência real. A decomposição da série temporal evidencia tendência, sazonalidade e resíduos. O histograma mostra onde o recurso permanece concentrado na maior parte do tempo, e o gráfico de uso por hora identifica janelas recorrentes de maior consumo.
+
+3. Análise Estatística
+No período de 15/03/2026 a 13/06/2026, foram analisadas 91 amostras. A capacidade total considerada foi 4.99 GB e a margem de segurança de 80% equivale a 3.99 GB. Mínimo: 3.17 GB; média: 3.39 GB; mediana: 3.39 GB; P95: 3.42 GB; máximo: 3.42 GB. Previsões: 30 dias 3.48 GB (69.80%), 60 dias 3.52 GB (70.58%), 90 dias 3.56 GB (71.36%).
+
+Indicadores calculados:
+- Capacidade total: 4.99 GB
+- Margem de segurança (80%): 3.99 GB
+- Uso mínimo: 3.17 GB
+- Uso médio: 3.39 GB (68.00%)
+- Mediana: 3.39 GB (67.96%)
+- Q1: 3.39 GB
+- Q3: 3.42 GB
+- P95: 3.42 GB (68.51%)
+- Máximo: 3.42 GB (68.52%)
+- Forecast 30 dias: 3.48 GB (69.80%)
+- Forecast 60 dias: 3.52 GB (70.58%)
+- Forecast 90 dias: 3.56 GB (71.36%)
+- Diagnóstico: OK
+- Ação recomendada: MANTER MONITORAMENTO
+- Capacidade sugerida: Não aplicável
+- Variação sugerida: Não aplicável
+
+4. Conclusão e Recomendação
+Não há indicação de aumento imediato do recurso Disco (Partição /). A recomendação é manter a configuração atual e continuar o monitoramento periódico.
+
+Observações:
+- A LLM/Data+RAG não calcula os números; ela apenas transforma os indicadores calculados pelo motor estatístico em texto executivo.
+- A margem de segurança usada foi de 80% da capacidade total.
+- Forecast linear simples de 90 dias; usar como apoio, não como única fonte de decisão.

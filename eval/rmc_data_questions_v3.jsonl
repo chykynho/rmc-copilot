@@ -1,0 +1,6 @@
+{"id": "D301", "question": "Quais VMs do cluster BV_PRD_09_SQL estão em P0 ou P1?", "must_include": ["BV_PRD_09_SQL", "P0", "P1"], "expected_vms": ["SQL-PRD-001", "SQL-PRD-002", "SQL-PRD-003"], "min_rows": 3}
+{"id": "D302", "question": "Quais VMs estão em maior risco no ambiente?", "must_include": ["P0", "TRATAR_IMEDIATO"], "min_rows": 3}
+{"id": "D303", "question": "Quais objetos têm forecast de disco em 30 dias?", "must_include": ["forecast 30d", "DISK"], "must_not_include": ["SQL-PRD-001"], "expected_vms": ["FILE-PRD-001", "SQL-PRD-002", "ORA-PRD-001"], "forbidden_vms": ["SQL-PRD-001"], "strict_forecast_window": 30, "strict_forecast_resource": "DISK", "min_rows": 3}
+{"id": "D304", "question": "Quais objetos têm forecast de memória em 30 dias?", "must_include": ["forecast 30d", "MEM"], "expected_vms": ["SQL-PRD-001"], "strict_forecast_window": 30, "strict_forecast_resource": "MEM", "min_rows": 1}
+{"id": "D305", "question": "Quais VMs são candidatas a rightsizing?", "must_include": ["P3", "rightsizing"], "min_rows": 2}
+{"id": "D306", "question": "Explique o risco do cluster BV_PRD_08_Oracle.", "must_include": ["BV_PRD_08_Oracle"], "min_rows": 1}

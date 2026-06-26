@@ -1,0 +1,59 @@
+Você é um analista de infraestrutura, VMware e Capacity Planning.
+Gere uma análise executiva em português, clara para público não técnico, com base EXCLUSIVA nos números JSON abaixo.
+Não invente valores, datas, nomes, capacidades, percentuais ou recomendações fora do JSON.
+Use seções: Resumo Executivo, Análise Técnica, Análise Estatística, Conclusão e Recomendação.
+Use datas no padrão português do Brasil: DD/MM/AAAA.
+Explique a margem de segurança de 80%.
+
+JSON:
+{
+  "solicitacao": {
+    "solicitacao": "SOL185295",
+    "vm": "EQX-CAAUTHPRD03",
+    "resource": "MEM",
+    "partition": null,
+    "periodo_dias": 90,
+    "solicitante": "",
+    "analista": "Francisco Alves",
+    "classificacao": "PÚBLICO",
+    "threshold_pct": 80.0,
+    "origem": "DuckDB oficial / run_id=RMC_Recursos_VM_v5_10_4_4_3_20260615_130005",
+    "vm_resource_id": "485cf9c4-9ebd-40ec-8e60-9672fac01e12"
+  },
+  "estatisticas": {
+    "resource": "Memória (RAM)",
+    "unit": "%",
+    "capacity": 100.0,
+    "threshold_pct": 80.0,
+    "threshold_value": 80.0,
+    "start": "15/03/2026",
+    "end": "13/06/2026",
+    "samples": 91,
+    "minimum": 27.18700382444594,
+    "maximum": 32.37251757578567,
+    "mean": 29.99638359477327,
+    "median": 30.57023517290751,
+    "q1": 28.61742358311774,
+    "q3": 31.12550155424444,
+    "p95": 32.1276428147637,
+    "std": 1.5052484602290275,
+    "iqr": 2.508077971126699,
+    "lower_outlier": 24.85530662642769,
+    "upper_outlier": 34.88761851093449,
+    "mean_pct": 29.996383594773267,
+    "median_pct": 30.570235172907513,
+    "maximum_pct": 32.37251757578567,
+    "p95_pct": 32.1276428147637,
+    "forecast_30": 26.557277451501744,
+    "forecast_60": 25.148777361122516,
+    "forecast_90": 23.74027727074329,
+    "forecast_30_pct": 26.557277451501744,
+    "forecast_60_pct": 25.148777361122516,
+    "forecast_90_pct": 23.74027727074329,
+    "diagnosis": "OK",
+    "recommendation_action": "MANTER_MONITORAMENTO",
+    "recommended_capacity": null,
+    "recommended_delta": null,
+    "confidence_note": "Forecast linear simples de 90 dias; usar como apoio, não como única fonte de decisão."
+  }
+}

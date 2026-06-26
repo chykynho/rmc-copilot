@@ -1,0 +1,44 @@
+Relatório de Análise Individual de Recursos — SRV-DASHPRD01
+Solicitação: SOL178954
+Servidor / VM: SRV-DASHPRD01
+Recurso: Memória (RAM)
+Período histórico: 90 dias
+Período analisado: 20/03/2026 a 17/06/2026
+Solicitante: 
+Analista: Francisco Alves
+Classificação: PÚBLICO
+
+1. Resumo Executivo
+A análise do recurso Memória (RAM) da VM SRV-DASHPRD01 indica cenário crítico de capacidade. O uso médio foi de 44.99 GB (93.74%), o P95 foi de 47.88 GB (99.74%) e a previsão de 90 dias aponta 53.31 GB (111.07%). O comportamento viola ou se aproxima fortemente da margem de segurança de 80%.
+
+2. Análise Técnica dos Gráficos
+O gráfico de comparação e previsão deve ser usado para verificar se a linha de utilização se aproxima da capacidade total ou da margem de segurança. O gráfico de média móvel ajuda a diferenciar picos isolados de tendência real. A decomposição da série temporal evidencia tendência, sazonalidade e resíduos. O histograma mostra onde o recurso permanece concentrado na maior parte do tempo, e o gráfico de uso por hora identifica janelas recorrentes de maior consumo.
+
+3. Análise Estatística
+No período de 20/03/2026 a 17/06/2026, foram analisadas 360 amostras. A capacidade total considerada foi 48.00 GB e a margem de segurança de 80% equivale a 38.40 GB. Mínimo: 26.41 GB; média: 44.99 GB; mediana: 45.09 GB; P95: 47.88 GB; máximo: 48.96 GB. Previsões: 30 dias 49.59 GB (103.32%), 60 dias 51.45 GB (107.19%), 90 dias 53.31 GB (111.07%).
+
+Indicadores calculados:
+- Capacidade total: 48.00 GB
+- Margem de segurança (80%): 38.40 GB
+- Uso mínimo: 26.41 GB
+- Uso médio: 44.99 GB (93.74%)
+- Mediana: 45.09 GB (93.93%)
+- Q1: 43.77 GB
+- Q3: 46.62 GB
+- P95: 47.88 GB (99.74%)
+- Máximo: 48.96 GB (102.00%)
+- Forecast 30 dias: 49.59 GB (103.32%)
+- Forecast 60 dias: 51.45 GB (107.19%)
+- Forecast 90 dias: 53.31 GB (111.07%)
+- Diagnóstico: CRÍTICO
+- Ação recomendada: AUMENTAR RECURSO
+- Capacidade sugerida: 80.00 GB
+- Variação sugerida: 32.00 GB
+
+4. Conclusão e Recomendação
+Recomenda-se avaliar aumento do recurso Memória (RAM). Capacidade atual: 48.00 GB. Capacidade sugerida: 80.00 GB (variação estimada de 32.00 GB). A recomendação deve ser validada com o responsável da aplicação antes da alteração em produção.
+
+Observações:
+- A LLM/Data+RAG não calcula os números; ela apenas transforma os indicadores calculados pelo motor estatístico em texto executivo.
+- A margem de segurança usada foi de 80% da capacidade total.
+- Forecast linear simples de 90 dias; usar como apoio, não como única fonte de decisão.

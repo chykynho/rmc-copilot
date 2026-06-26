@@ -1,0 +1,40 @@
+Relatório Consolidado de Análise Individual de Recursos — SRV-DASHPRD01
+Solicitação: SOL178954
+VM: SRV-DASHPRD01
+Período histórico: 90 dias
+Solicitante: 
+Analista: Francisco Alves
+Classificação: PÚBLICO
+
+== Processamento (CPU) ==
+Diagnóstico: SUPERDIMENSIONADO
+Ação: AVALIAR REDUÇÃO
+Uso médio: 1.32 GHz (6.37%)
+P95: 1.38 GHz (6.63%)
+Forecast 90 dias: 1.50 GHz (7.25%)
+Resumo executivo:
+A análise do recurso Processamento (CPU) da VM SRV-DASHPRD01 indica possível superdimensionamento. A capacidade atual é de 20.75 GHz, enquanto o uso médio foi de apenas 1.32 GHz (6.37%) e o P95 ficou em 1.38 GHz (6.63%). Não há evidência estatística de necessidade de aumento do recurso neste momento.
+Conclusão e recomendação:
+Recomenda-se avaliar redução controlada do recurso Processamento (CPU), pois o uso médio e o P95 estão muito abaixo da capacidade alocada. Capacidade atual: 20.75 GHz. Capacidade técnica sugerida para avaliação: 10.00 GHz. A redução deve ser feita em janela controlada, com monitoramento após a alteração.
+
+== Memória (RAM) ==
+Diagnóstico: CRÍTICO
+Ação: AUMENTAR RECURSO
+Uso médio: 44.99 GB (93.74%)
+P95: 47.88 GB (99.74%)
+Forecast 90 dias: 53.31 GB (111.07%)
+Resumo executivo:
+A análise do recurso Memória (RAM) da VM SRV-DASHPRD01 indica cenário crítico de capacidade. O uso médio foi de 44.99 GB (93.74%), o P95 foi de 47.88 GB (99.74%) e a previsão de 90 dias aponta 53.31 GB (111.07%). O comportamento viola ou se aproxima fortemente da margem de segurança de 80%.
+Conclusão e recomendação:
+Recomenda-se avaliar aumento do recurso Memória (RAM). Capacidade atual: 48.00 GB. Capacidade sugerida: 80.00 GB (variação estimada de 32.00 GB). A recomendação deve ser validada com o responsável da aplicação antes da alteração em produção.
+
+== Disco (Partição C:) ==
+Diagnóstico: OK
+Ação: MANTER MONITORAMENTO
+Uso médio: 77.44 GB (43.16%)
+P95: 81.24 GB (45.28%)
+Forecast 90 dias: 87.57 GB (48.81%)
+Resumo executivo:
+A análise do recurso Disco (Partição C:) da VM SRV-DASHPRD01 indica comportamento operacional estável. A capacidade atual é de 179.40 GB, o uso médio foi de 77.44 GB (43.16%) e o P95 ficou em 81.24 GB (45.28%), dentro da margem de segurança de 80%.
+Conclusão e recomendação:
+Não há indicação de aumento imediato do recurso Disco (Partição C:). A recomendação é manter a configuração atual e continuar o monitoramento periódico.

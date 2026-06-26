@@ -1,0 +1,40 @@
+Relatório Consolidado de Análise Individual de Recursos — SRV-DASHPRD01
+Solicitação: SOL1809645
+VM: SRV-DASHPRD01
+Período histórico: 90 dias
+Solicitante: Eduardo Barbosa
+Analista: Francisco Alves
+Classificação: PÃŠBLICO
+
+== Processamento (CPU) ==
+Diagnóstico: SUPERDIMENSIONADO
+Ação: AVALIAR REDUÇÃO
+Uso médio: 5.94 % (5.94%)
+P95: 13.16 % (13.16%)
+Forecast 90 dias: 10.62 % (10.62%)
+Resumo executivo:
+A análise do recurso Processamento (CPU) da VM SRV-DASHPRD01 indica possível superdimensionamento. A capacidade atual é de 100.00 %, enquanto o uso médio foi de apenas 5.94 % (5.94%) e o P95 ficou em 13.16 % (13.16%). Não há evidência estatística de necessidade de aumento do recurso neste momento.
+Conclusão e recomendação:
+Recomenda-se avaliar redução controlada do recurso Processamento (CPU), pois o uso médio e o P95 estão muito abaixo da capacidade alocada. Capacidade atual: 100.00 %. Capacidade técnica sugerida para avaliação: 40.00 %. A redução deve ser feita em janela controlada, com monitoramento após a alteração.
+
+== Memória (RAM) ==
+Diagnóstico: OK
+Ação: MANTER MONITORAMENTO
+Uso médio: 30.51 % (30.51%)
+P95: 60.55 % (60.55%)
+Forecast 90 dias: 47.33 % (47.33%)
+Resumo executivo:
+A análise do recurso Memória (RAM) da VM SRV-DASHPRD01 indica comportamento operacional estável. A capacidade atual é de 100.00 %, o uso médio foi de 30.51 % (30.51%) e o P95 ficou em 60.55 % (60.55%), dentro da margem de segurança de 80%.
+Conclusão e recomendação:
+Não há indicação de aumento imediato do recurso Memória (RAM). A recomendação é manter a configuração atual e continuar o monitoramento periódico.
+
+== Disco (Partição C:) ==
+Diagnóstico: OK
+Ação: MANTER MONITORAMENTO
+Uso médio: 81.11 GB (45.21%)
+P95: 89.25 GB (49.75%)
+Forecast 90 dias: 85.33 GB (47.57%)
+Resumo executivo:
+A análise do recurso Disco (Partição C:) da VM SRV-DASHPRD01 indica comportamento operacional estável. A capacidade atual é de 179.40 GB, o uso médio foi de 81.11 GB (45.21%) e o P95 ficou em 89.25 GB (49.75%), dentro da margem de segurança de 80%.
+Conclusão e recomendação:
+Não há indicação de aumento imediato do recurso Disco (Partição C:). A recomendação é manter a configuração atual e continuar o monitoramento periódico.

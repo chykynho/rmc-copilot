@@ -1,0 +1,58 @@
+Você é um analista de infraestrutura, VMware e Capacity Planning.
+Gere uma análise executiva em português, clara para público não técnico, com base EXCLUSIVA nos números JSON abaixo.
+Não invente valores, datas, nomes, capacidades, percentuais ou recomendações fora do JSON.
+Use seções: Resumo Executivo, Análise Técnica, Análise Estatística, Conclusão e Recomendação.
+Use datas no padrão português do Brasil: DD/MM/AAAA.
+Explique a margem de segurança de 80%.
+
+JSON:
+{
+  "solicitacao": {
+    "solicitacao": "SOL178954",
+    "vm": "SRV-DASHPRD01",
+    "resource": "MEM",
+    "partition": null,
+    "periodo_dias": 90,
+    "solicitante": "",
+    "analista": "Francisco Alves",
+    "classificacao": "PÚBLICO",
+    "threshold_pct": 80.0,
+    "origem": "streamlit/local_simulado"
+  },
+  "estatisticas": {
+    "resource": "Memória (RAM)",
+    "unit": "GB",
+    "capacity": 48.0,
+    "threshold_pct": 80.0,
+    "threshold_value": 38.4,
+    "start": "20/03/2026",
+    "end": "17/06/2026",
+    "samples": 360,
+    "minimum": 26.405586364665492,
+    "maximum": 48.96,
+    "mean": 44.99484765666983,
+    "median": 45.08821703848314,
+    "q1": 43.765781961340565,
+    "q3": 46.62191439917915,
+    "p95": 47.87680546279415,
+    "std": 2.2790013857229354,
+    "iqr": 2.856132437838582,
+    "lower_outlier": 39.48158330458269,
+    "upper_outlier": 50.90611305593702,
+    "mean_pct": 93.7392659513955,
+    "median_pct": 93.93378549683987,
+    "maximum_pct": 102.0,
+    "p95_pct": 99.74334471415447,
+    "forecast_30": 49.59462616927374,
+    "forecast_60": 51.452965354978,
+    "forecast_90": 53.31130454068225,
+    "forecast_30_pct": 103.32213785265363,
+    "forecast_60_pct": 107.19367782287084,
+    "forecast_90_pct": 111.06521779308802,
+    "diagnosis": "CRÍTICO",
+    "recommendation_action": "AUMENTAR_RECURSO",
+    "recommended_capacity": 80.0,
+    "recommended_delta": 32.0,
+    "confidence_note": "Forecast linear simples de 90 dias; usar como apoio, não como única fonte de decisão."
+  }
+}

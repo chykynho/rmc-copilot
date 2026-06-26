@@ -1,0 +1,4 @@
+{"text": "Capacity planning em VMware avalia CPU, memória, disco, crescimento e risco de saturação."}
+{"text": "Uma VM com CPU média baixa e p95 baixo pode estar superdimensionada."}
+{"text": "Um cluster com memória p95 acima de 85% pode apresentar risco de saturação."}
+{"text": "O RMC Copilot analisa VMs, hosts e clusters para recomendar rightsizing."}

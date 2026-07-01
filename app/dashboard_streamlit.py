@@ -6207,44 +6207,8 @@ def render_pagina_fup():
 
 
 def render_pagina_otmz():
-    """OTMZ separado: powered off, órfãos e snapshots."""
-    df_analise_v4 = carregar_dados_dashboard()
-    df_filtrado, _ = filtrar_dataframe(df_analise_v4)
-    df_filtrado = preparar_coluna_host(df_filtrado)
-
-    st.markdown('<div class="section-title">OTMZ — Otimização</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-subtitle">VMs powered off, discos órfãos e snapshots acima de 30 dias.</div>', unsafe_allow_html=True)
-
-    df = df_filtrado.copy()
-    power_cols = [c for c in ["power_state", "Power State", "status_power", "vm_power_state"] if c in df.columns]
-    if power_cols:
-        col = power_cols[0]
-        poweredoff = df[df[col].astype(str).str.upper().str.contains("POWERED|OFF|DESLIG", na=False)].copy()
-    else:
-        poweredoff = pd.DataFrame()
-
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        render_kpi_card("Powered off", _fmt_card_count(len(poweredoff)), "kpi-yellow", "VMs")
-    with c2:
-        render_kpi_card("Discos órfãos", "N/C", "kpi-orange", "Coleta")
-    with c3:
-        render_kpi_card("Snapshots >30d", "N/C", "kpi-red", "Coleta")
-
-    st.markdown("#### VMs powered off")
-    if poweredoff.empty:
-        st.info("A base atual não trouxe VMs powered off ou não possui coluna de power state.")
-    else:
-        cols = [c for c in ["cluster", "host", "vm", power_cols[0], "categoria_vm", "prioridade_final", "acao_final"] if c in poweredoff.columns]
-        st.dataframe(formatar_dataframe_visual_2_casas(renomear_colunas_visual(poweredoff[cols])), width="stretch", hide_index=True)
-
-    st.markdown("#### Discos órfãos")
-    st.info("Seção separada criada. Falta incluir coleta específica de VMDK órfão no vROps/vCenter.")
-
-    st.markdown("#### Snapshots acima de 30 dias")
-    st.info("Seção separada criada. Falta incluir coleta específica de snapshots e idade.")
-
-
+    # Menu personalizado > Otimização > OTMZ.
+    render_otmz_panel()
 def render_pagina_pac():
     """PAC separado para forecast anual."""
     df_analise_v4 = carregar_dados_dashboard()
@@ -6270,6 +6234,21 @@ def render_pagina_pac():
         st.plotly_chart(criar_grafico_risco_futuro(df_filtrado), width="stretch")
 
 
+
+# MARCO_16A_8_MENU_UNIFICADO_OTIMIZACAO
+# =============================================================================
+# 16A.8.1 - Menu unificado de Otimização
+# =============================================================================
+def render_otimizacao_unificada():
+    # Menu personalizado > Otimização > OTMZ.
+    import sys
+    from pathlib import Path
+    app_dir = Path(__file__).resolve().parent
+    if str(app_dir) not in sys.path:
+        sys.path.insert(0, str(app_dir))
+    from rmc_otmz_menu_view import render_otmz_panel
+    render_otmz_panel()
+
 def main():
     aplicar_estilo_bv()
     render_header()
@@ -6285,7 +6264,7 @@ def main():
             "Capacity Dashboard",
             "Análise Individual de Recursos",
             "FUP",
-            "OTMZ",
+            "Otimização",
             "PAC",
             "Comparação entre execuções",
         ],
@@ -6300,8 +6279,8 @@ def main():
         render_analise_individual_recursos()
     elif pagina == "FUP":
         render_pagina_fup()
-    elif pagina == "OTMZ":
-        render_pagina_otmz()
+    elif pagina == "Otimização":
+        render_otimizacao_unificada()
     elif pagina == "PAC":
         render_pagina_pac()
     elif pagina == "Comparação entre execuções":
